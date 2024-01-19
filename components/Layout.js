@@ -1,14 +1,41 @@
 import Head from "next/head";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { firBaseApp, messaging } from "../src/firebase";
+import { getMessaging, getToken } from "firebase/messaging";
+import axios from "axios";
 import Header from "./header/Header";
 import { useEffect, useState } from "react";
 import ShareBTN from "./shareBtn/ShareBTN";
+
 const Layout = ({ topright, children, shareBtn }) => {
   const [currentUrl, setCurrentUrl] = useState("");
 
   useEffect(() => {
     setCurrentUrl(window.location.href);
   }, [setCurrentUrl]);
+
+  //user notification
+  async function requestPermission() {
+    if (Notification.permission !== "granted") {
+      const permission = await Notification.requestPermission();
+      if (permission === "granted") {
+        // gernrate token
+        const messaging = getMessaging(firBaseApp);
+        const token = await getToken(messaging, {
+          vapidKey:
+            "BEWVewYC3Vja2sC3qQ12-JYZubW9p0797eHaiHLZUQixgCQQ_N-oKLnAbHmcuHIpdgwUc_FAY-d5EtwP7QvmVHg",
+        });
+        const resp = await axios.post("/api/notificationToken", { token });
+        console.log(resp.data, "resp", token);
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      requestPermission(messaging);
+    }
+  }, []);
   return (
     <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
       <Head>

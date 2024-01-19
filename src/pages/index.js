@@ -9,8 +9,11 @@ import { ogMetaTags } from "../../components/commonOgMetatags";
 import { ogErrorMetaTags } from "../../components/commonErrorMetatags";
 import SingleNews from "../../components/singleNews/SingleNews";
 import Tabbar from "../../components/tabbar/TabBar";
+import { useSelector } from "react-redux";
+import PushNotification from "../../components/pushNotification/PushNotification";
 
 const HomePage = ({ data, errorData, category, lang }) => {
+  const { isAdmin } = useSelector((state) => state.oneTapLogin);
   const { textConst } = allConst;
   if (errorData) {
     return (
@@ -37,7 +40,8 @@ const HomePage = ({ data, errorData, category, lang }) => {
     <Layout>
       <Head>
         {ogMetaTags(
-          data && data.length ? data?.[0] : "Welcome to world breaking News", "Home"
+          data && data.length ? data?.[0] : "Welcome to world breaking News",
+          "Home"
         )}
       </Head>
       <Tabbar lang="hi" />
@@ -58,6 +62,9 @@ const HomePage = ({ data, errorData, category, lang }) => {
             );
           })}
       </div>
+      {isAdmin && data && data.length && (
+        <PushNotification notificationDetail={data[0]} />
+      )}
     </Layout>
   );
 };

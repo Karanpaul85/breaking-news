@@ -10,8 +10,11 @@ import styles from "./singleNews.module.css";
 import headingStyle from "../../../styles/Home.module.css";
 import { fetchSearchData } from "@/redux/slices/searchSlice";
 import { allConst } from "@/constant/common_constants";
+import PushNotification from "../../../../components/pushNotification/PushNotification";
+import { useSelector } from "react-redux";
 
 const News = ({ data, errorData }) => {
+  const { isAdmin } = useSelector((state) => state.oneTapLogin);
   const { textConst } = allConst;
   if (errorData) {
     return (
@@ -62,6 +65,7 @@ const News = ({ data, errorData }) => {
           </div>
         </div>
       </div>
+      {isAdmin && data && <PushNotification notificationDetail={data} />}
     </Layout>
   );
 };

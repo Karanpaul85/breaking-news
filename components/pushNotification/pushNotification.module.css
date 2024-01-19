@@ -1,0 +1,86 @@
+.notificationBtn {
+  position: fixed;
+  padding: 8px !important;
+  bottom: 90px;
+  right: 20px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--borderColor);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all ease-in-out 0.5s;
+}
+.notificationBtn span {
+  margin-left: 10px;
+}
+.notificationDrawer {
+  display: flex;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+.notificationTitle {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.notificationImage {
+  padding-top: 80px;
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.notificationImage img {
+  position: absolute;
+  top: 0;
+  border-radius: 8px;
+}
+.notificationDrawerBtnSec {
+  width: 100%;
+}
+.notificationDrawerBtnSec button {
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  border: 0;
+  background: var(--red);
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
+.notificationDrawerBtnSec button:disabled {
+  opacity: 0.5;
+}
+.notificationDrawerBtnSec .loading {
+  content: "";
+  display: none;
+  width: 1.2em;
+  height: 1.2em;
+  left: calc(50% - 0.75em);
+  top: calc(50% - 0.75em);
+  border: 0.15em solid transparent;
+  border-right-color: white;
+  border-radius: 50%;
+  animation: button-anim 0.7s linear infinite;
+  opacity: 1;
+  margin-right: 10px;
+}
+.notificationDrawerBtnSec .show {
+  display: inline-block !important;
+}
+
+@keyframes button-anim {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

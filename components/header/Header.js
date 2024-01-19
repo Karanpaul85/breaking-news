@@ -37,7 +37,7 @@ const Header = ({ topright }) => {
               const resp = await axios("/api/users", {
                 method: "POST",
                 headers: {
-                  Authorization: `Bearer ${credentialResponse.credential}sassasa`,
+                  Authorization: `Bearer ${credentialResponse.credential}`,
                 },
               });
               dispatch(setUserDetails(resp.data));

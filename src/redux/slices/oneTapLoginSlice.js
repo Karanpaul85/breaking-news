@@ -15,12 +15,13 @@ const oneTapLogin = createSlice({
   initialState,
   reducers: {
     setUserDetails: (state, action) => {
-      const { email, email_verified, name, picture } = action.payload;
+      const { email, email_verified, name, picture, isAdmin } = action.payload;
       if (email_verified) {
         state.email = email;
         state.email_verified = email_verified;
         state.name = name;
         state.picture = picture;
+        state.isAdmin = isAdmin;
         createCookie("auth", JSON.stringify(state), 2);
       }
     },

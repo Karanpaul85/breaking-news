@@ -9,9 +9,11 @@ import { ogMetaTags } from "../../../components/commonOgMetatags";
 import headingStyle from "../../styles/Home.module.css";
 import { allConst } from "@/constant/common_constants";
 import SingleNews from "../../../components/singleNews/SingleNews";
+import PushNotification from "../../../components/pushNotification/PushNotification";
+import { useSelector } from "react-redux";
 
 const Types = ({ data, errorData, category }) => {
-  console.log(data, "data");
+  const { isAdmin } = useSelector((state) => state.oneTapLogin);
   const router = useRouter();
   const { textConst } = allConst;
   const { lang, type } = router.query;
@@ -40,7 +42,8 @@ const Types = ({ data, errorData, category }) => {
     <Layout>
       <Head>
         {ogMetaTags(
-          data && data.length ? data?.[0] : "Welcome to world breaking News", type
+          data && data.length ? data?.[0] : "Welcome to world breaking News",
+          type
         )}
       </Head>
       <Tabbar lang={lang} />
@@ -62,6 +65,9 @@ const Types = ({ data, errorData, category }) => {
             })
           : "We can not find any results for this query"}
       </div>
+      {isAdmin && data && data.length && (
+        <PushNotification notificationDetail={data?.[0]} />
+      )}
     </Layout>
   );
 };

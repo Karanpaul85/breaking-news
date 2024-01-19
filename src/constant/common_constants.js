@@ -41,4 +41,8 @@ export const tagList = {
     "other",
   ],
 };
-export const languages = [{ url: "/hi/world", desc: "हिंदी" }, { url: "/en/world", desc: "English" }];
+export const languages = [
+  { url: "/hi/world", desc: "हिंदी" },
+  { url: "/en/world", desc: "English" },
+];
+export const adminEmails = ["karanpaul85@gmail.com"];

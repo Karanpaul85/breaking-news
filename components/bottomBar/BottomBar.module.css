@@ -43,3 +43,14 @@
   margin-top: 5px;
   padding: 0 2px;
 }
+.bottomBaarSearch {
+  border: 0;
+  cursor: pointer;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}

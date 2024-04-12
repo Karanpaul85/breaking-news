@@ -12,6 +12,10 @@ export const removeCookie = (cookieName) => {
 export const checkTimeisOver = async (serverTime) => {
   const currentTime = Date.now();
   const timeDiffrence = currentTime - serverTime;
+  // if (timeDiffrence > 20000) {
+  //   console.log("Time is over");
+  //   return true;
+  // }
   if (timeDiffrence > 7200000) {
     console.log("Time is over");
     return true;

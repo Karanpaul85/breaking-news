@@ -88,7 +88,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
       if (isTimeOver) {
         await store.dispatch(setApiCallTime(options));
         serverData = await store.dispatch(fetchData(options));
-        await store.dispatch(sendDataFromMDB(serverData.payload));
+        if (!serverData.payload) {
+          serverData = await store.dispatch(fetchDataFromMDB(options));
+        } else {
+          await store.dispatch(sendDataFromMDB(serverData.payload));
+        }
       } else {
         serverData = await store.dispatch(fetchDataFromMDB(options));
       }

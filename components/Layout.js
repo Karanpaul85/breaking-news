@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { firBaseApp, messaging } from "../src/firebase";
+import { firBaseApp } from "../src/firebase";
 import { getMessaging, getToken } from "firebase/messaging";
 import axios from "axios";
 import Header from "./header/Header";
@@ -35,7 +35,7 @@ const Layout = ({ topright = true, children, showBottomBar = true }) => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      requestPermission(messaging);
+      requestPermission();
     }
   }, []);
   return (
